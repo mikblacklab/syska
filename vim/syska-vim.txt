@@ -1,0 +1,226 @@
+            ++++++++++++++++++++++++++++++++++++++++++++++++++
+            Easy introduction to vim with RIKU (with examples)
+            ++++++++++++++++++++++++++++++++++++++++++++++++++
+
+----------------------------------------------------------------------------
+                        Why use text editors?
+----------------------------------------------------------------------------
+
+The idea behind using a text editor is to maximise the efficiency and speed
+of coding WITHOUT USING THE MOUSE. 
+
+The problem with using the mouse is that you're taking your hand off the 
+keyboard to do something simple as highlighting a word, or even worse, 
+highlighting a letter.
+
+The amount of time used to exchange between the keyboard and the mouse is 
+very wasteful. This is (probably) why we have shortcuts like ctrl-s on 
+Microsoft Word and other stuff. 
+
+Any good text editor should minimise this behaviour (i.e. allow you to edit
+text without using the mouse). Some good text editors include vim, emacs,
+nano, and many others.
+
+----------------------------------------------------------------------------
+Why use vim when you can use other text editors like emacs,nano, or Rstudio?
+----------------------------------------------------------------------------
+
+The whole point of using vim is to make typing and editing faster, but not 
+necessarily easier for some people (especially beginners).
+
+emacs and nano might be easier to start off with and use, because it's very
+much like just typing on a notepad or Word, or something else. 
+
+Shortcut keys on emacs are easy to use and very useful (e.g. ^k to delete
+a line, ^a to go to the start of the line)
+
+HOWEVER, some of these shortcuts are quite hard to remember, and also 
+take time to repeat. 
+
+For example, the 'undo' shortcut on emacs is ^x (ctrl-x) then press u. This
+means that you have to press ^x every single time when you're trying to 
+undo your mistake, which I thought was quite annoying. 
+
+Also, you'd think the undo command to be just ^u - what's the point of 
+having ^x first, then u (without ctrl).
+
+I haven't really explored into the emacs world, so I shouldn't say too much
+bad stuff about it, BUT the combinations of ctrl and alt keys with or 
+without the letters can get really confusing.
+
+This is where vim comes in handy - it is 'simple'.
+
+----------------------------------------------------------------------------
+                            Basics of vim
+----------------------------------------------------------------------------
+
+I won't go too much into the details of vim, but it has 3 main modes:
+    1) Insert
+    2) Normal
+    3) Visual
+
+Insert lets you type stuff like normal text editors, Visual lets you select
+particular letter/word/line, and Normal mode lets you do all the shortcuts. 
+
+My interpretation of the Normal mode is "press control automatically when I
+press a key"
+
+Some of the useful keys in normal mode are: hjklwbud0.xtyor
+
+I won't go into too much details - you can do vimtutor to learn the basics.
+
+One last thing to note: When you're using vim, you should "DO IT, REPEAT
+IT, AND UNDO IT"
+    - If you're repeating it yourself, make the shortcuts repeat it for you
+
+----------------------------------------------------------------------------
+                    .vimrc, plugins and spf13
+----------------------------------------------------------------------------
+
+Now, my REAL topic of today's talk - .vimrc file.
+
+Vim, when it starts running, reads the 'invisible' file called .vimrc in 
+your home directory and loads the specifications written in that file. 
+
+This can be as simple as setting the default colour scheme, putting line
+numbers, etc., to something a little bit more sophisticated (e.g. writing 
+your own vim function).
+
+The good thing about this is that you can customise vim so it suits you
+and only you.
+
+Problems arise when you want vim to do something that it cannot do by 
+default. There are 2 solutions to this: 1) write it yourself, or 2) look
+on internet for some plugins. 
+
+You can install additional plugins that someone else has created to enhance 
+the functionality of your vim. 
+
+So this is all good - you can customise your vim, download plugins, make it 
+pretty, etc., etc.
+
+BUT BUT BUT
+
+As a beginner, you really don't have a clue on how to do this yourself!!!
+
+I spent about a week making vim look okay and bearable to use, but this 
+was VERY hard. 
+    - plugins weren't working properly 
+    - colour schemes were weird
+    - vimrc was hard to use and configure,
+    - etc., etc.
+
+And one day, I stumbled upon the "perfect vimrc file" - spf13
+
+spf13 is a bunch of plugins with ready-to-go vimrc file written by a guy 
+called jrobeson (if you want to stalk him on github). 
+
+This 'package' for vim has EVERYTHING useful to you - now, or in the future.
+
+Just download it and install it, and you've got a fancy vim from the start.
+
+There are many plugins that you will like, but maybe you might want to add 
+your own tweaks to it as well. 
+
+spf13 provides a .vimrc.local file for you to put your tweaks in. If you 
+want to add extra plugins, then you'll have to make .vimrc.bundles.local
+file to put the plugins, and you're all set.
+
+Removing plugins should be easy as well - refer to his github page. 
+
+Some of the cool tricks that I'm going to show you are from the plugins 
+which are installed by default in spf13. 
+
+One last thing before I start demonstrating the plugins: 
+
+        I HIGHLY RECOMMEND YOU TO READ AND/OR PRINT THE BOOK 
+                    "Practical Vim" by Drew Neil
+
+This book is full of good vim tips that most people don't know. For example,
+adding/subtracting numbers with ^a or ^x.
+
+============================================================================
+                                DEMO
+============================================================================
+
+Note: <leader> is a special key in vim (kind of like alt?) and is mapped to
+the backslash ('\') key. In spf13 vim, it is mapped to the comma key. If 
+you don't like it, you can map it to a different key (in .vimrc file)
+
+============================================================================
+
+NERDCommenter
+
+Press <leader>c<space> at the same time (i.e. ",c ") at the line you want 
+to comment out.
+You can select multiple lines with visual mode.
+
+NERDTree
+
+Press ctrl-e to toggle the tree window. Move around in the window using the 
+hjkl keys and <enter> to select. It'll open it in a new tab by default, I 
+think. 
+
+Surround
+
+I recommend you look at the github page for the surround, but basically: 
+
+    ds<something>               = delete the surrounding <something>
+    cs<key1><key2>              = change the key1 surround to key2 surround
+    (visual select)S<something> = to surround the selected words with 
+                                    <something>
+
+This is a demonstration for surround:
+
+"Hello, world!"
+
+hello world
+
+for  i in 1:length population  {
+    print(i)
+}
+
+\emph(YOU REALLY SHOULD START USING VIM!!)
+
+This is some text that i'll have to comment out. This could be as
+short as just a few lines (maybe), or as long as 50 lines (e.g. a very 
+long for-loop)
+
+for (int i = 0; i < 100; i++) {
+    blah
+    blah
+    blah
+    blah
+    blah
+    blah
+    blah
+    blah
+    blah
+    blah
+    blah
+    blah
+    blah
+    blah
+    blah
+    blah
+    blah
+    blah
+}
+
+============================================================================
+
+Tabularise
+
+Press <leader>a<key-to-align> (i.e. ',a<something>') to align the lines to 
+that certain character. 
+
+Say if you wanted to align the lines below to the '|' symbol, then you 
+would type ',a|' after you've selected the lines that you want to align.
+
+This is a wee demonstration of the tabularise plugin:
+
+Groups|No. of people|Mean age
+=|=|=
+1|500,000,000|37
+2|twelve thousand| forty-three
+3|50|sixteen
