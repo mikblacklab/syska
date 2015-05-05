@@ -11,3 +11,6 @@ http://en.wikibooks.org/wiki/LaTeX/Tables
 Similar resource for Matrices:
 
 http://en.wikibooks.org/wiki/LaTeX/Mathematics#Matrices_and_arrays
+
+Otago LaTeX thesis template:
+http://www.cs.otago.ac.nz/research/dbweb/resources.html
