@@ -1,5 +1,17 @@
 Short introduction in labMeetingMikMay2015.pdf
 
+##Make a pdf file
+
+1. Go the Files directory
+
+2. Type: *pdflatex labMeetingMikMay2015.pdf*
+
+Done
+
+If you don't see citation, then 
+3. Type *bibtex pdflatex labMeetingMikMay2015.aux*
+4. Retype *pdflatex labMeetingMikMay2015.pdf*
+
 If you want to make complex tables, see these links:
 
 http://texblog.org/2012/12/21/multi-column-and-multi-row-cells-in-latex-tables/
