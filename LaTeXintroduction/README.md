@@ -4,15 +4,21 @@ Short introduction in labMeetingMikMay2015.pdf
 
 1. Go the Files directory
 
-2. Type: *pdflatex labMeetingMikMay2015.pdf*
+2. Type: 
+
+*pdflatex labMeetingMikMay2015.pdf*
 
 Done
 
 If you don't see citation, then 
 
-3. Type *bibtex pdflatex labMeetingMikMay2015.aux*
+3. Type:
 
-4. Retype *pdflatex labMeetingMikMay2015.pdf*
+ *bibtex labMeetingMikMay2015.aux*
+
+4. Retype:
+
+ *pdflatex labMeetingMikMay2015.pdf*
 
 If you want to make complex tables, see these links:
 
