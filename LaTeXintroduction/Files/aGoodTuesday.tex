@@ -1,0 +1,42 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage{natbib}
+\bibliographystyle{abbrvnat}
+\setcitestyle{authoryear,open={(},close={)}}
+
+
+\begin{document}
+
+The lab suggested that I should give a short introduction about \LaTeX. 
+I don't know what I should present, so I have decided to introduce:
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Equation}
+
+You can type \begin{verbatim}\alpha \end{verbatim} to obtain $\alpha$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Table/Picture}
+
+There is a table here.
+
+\begin{tabular}{|p{3cm}|p{6cm}|}
+\hline
+A1 & A2\\
+\hline
+Ha & \includegraphics[width = 2cm, height = 2cm]{SmileFace} \\
+\hline
+\end{tabular}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Citation}
+
+Here, I use a paper of \cite{chang2015core}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Thesis}
+
+Here, I suggest that people should use the format of Otago University.
+
+\bibliography{bibLabMik}
+\end{document}

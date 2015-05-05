@@ -1,0 +1,10 @@
+\beamer@endinputifotherversion {3.10pt}
+\beamer@sectionintoc {1}{Introduction}{1}{0}{1}
+\beamer@sectionintoc {2}{\LaTeX }{4}{0}{2}
+\beamer@subsectionintoc {2}{1}{Equation}{4}{0}{2}
+\beamer@subsectionintoc {2}{2}{Picture/Table}{6}{0}{2}
+\beamer@subsectionintoc {2}{3}{Citation}{9}{0}{2}
+\beamer@subsectionintoc {2}{4}{Thesis}{11}{0}{2}
+\beamer@subsectionintoc {2}{5}{Beamer}{12}{0}{2}
+\beamer@subsectionintoc {2}{6}{Example}{18}{0}{2}
+\beamer@sectionintoc {3}{Discussion}{19}{0}{3}
