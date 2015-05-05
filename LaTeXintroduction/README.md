@@ -9,7 +9,9 @@ Short introduction in labMeetingMikMay2015.pdf
 Done
 
 If you don't see citation, then 
+
 3. Type *bibtex pdflatex labMeetingMikMay2015.aux*
+
 4. Retype *pdflatex labMeetingMikMay2015.pdf*
 
 If you want to make complex tables, see these links:
