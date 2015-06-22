@@ -1,0 +1,45 @@
+---
+title: "Untitled"
+author: "Murray Cadzow"
+date: "22 June 2015"
+output: slidy_presentation
+---
+
+# SQL and R
+
+
+SQLite - SQLite db
+
+RMySQL - MySQL db
+
+sqldf - use SQL on dataframes
+
+# RMySQL
+
+
+A package to connect to mysql databases through R
+
+# Create dbDriver
+
+
+
+```{r}
+library(RMySQL)
+drv = dbDriver("MySQL")
+```
+
+
+# Connect to db
+
+
+
+setup your connection to public database
+
+e.g. UCSC genome broswer
+
+```{r}
+ucsc = dbConnect(drv, user="genome", 
+                 host="genome-mysql.cse.ucsc.edu", 
+                 dbname="hg19", password="")
+```
+
