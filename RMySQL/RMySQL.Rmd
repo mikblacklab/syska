@@ -1,7 +1,7 @@
 ---
-title: "Untitled"
+title: "R and SQL"
 author: "Murray Cadzow"
-date: "22 June 2015"
+date: "23 June 2015"
 output: slidy_presentation
 ---
 
@@ -14,16 +14,27 @@ RMySQL - MySQL db
 
 sqldf - use SQL on dataframes
 
-# RMySQL
+# SQL packages
+
+## RMySQL
 
 
 A package to connect to mysql databases through R
+
+
+## SQLite
+
+
+A package to connect to SQLite databases through R
+
+
+__Both use DBI package to do their work__
 
 # Create dbDriver
 
 
 
-```{r}
+```{r library}
 library(RMySQL)
 drv = dbDriver("MySQL")
 ```
@@ -31,15 +42,121 @@ drv = dbDriver("MySQL")
 
 # Connect to db
 
-
-
 setup your connection to public database
 
 e.g. UCSC genome broswer
 
-```{r}
+```{r ucsc}
 ucsc = dbConnect(drv, user="genome", 
                  host="genome-mysql.cse.ucsc.edu", 
                  dbname="hg19", password="")
 ```
 
+# Show tables
+
+```{r tables}
+dbGetQuery(ucsc, "SELECT TABLE_NAME FROM information_schema.TABLES 
+WHERE `TABLE_SCHEMA` = 'hg19' LIMIT 10")
+```
+
+# Get Querying!
+
+```{r query, warning=FALSE, cache=TRUE}
+dbGetQuery(ucsc ,"SELECT chrom, chromStart, name FROM snp142 
+           WHERE chrom = 'chr4' AND chromStart + 1 = 89052323;")
+```
+
+# Variable insertion
+
+## By position
+
+```{r variable, warning=FALSE, cache=TRUE}
+chr="chr4"
+pos=89052323
+dbGetQuery(ucsc ,
+           paste0("SELECT chrom, chromStart, name FROM snp142 WHERE chrom = '",chr ,
+                  "' AND chromStart + 1 = ",pos,";"))
+```
+
+## By SNP id
+
+```{r snp, warning=FALSE, cache=TRUE}
+rsid="rs2231142"
+dbGetQuery(ucsc ,paste0("SELECT chrom, chromStart, chromEnd, name FROM snp142 
+                        WHERE name = '",rsid,"'"))
+```
+
+# Multiple Substitutions
+
+```{r multiSub, warning=FALSE, cache=TRUE}
+df = data.frame(chr=c("chr4","chr4"), pos = c(89052323, 23815662))
+apply(df,1, function(x)dbGetQuery(ucsc,
+                                  paste0("SELECT chrom, chromStart, chromEnd, name FROM snp142
+                                         WHERE chrom = '",x[1],"' 
+                                         AND chromStart + 1 = ",x[2],";")))
+```
+
+
+# Ensembl
+
+- ensembl_ancestral_75
+- ensembl_archive_75
+- ensembl_go_54
+- ensembl_ontology_75
+- ensembl_compara_75
+- homo_sapiens_core_75_37
+- homo_sapiens_funcgen_75_37
+- homo_sapiens_otherfeatures_75_37
+- homo_sapiens_variation_75_37
+- homo_sapiens_vega_75_37
+
+```{r ensembleCore}
+ensembl_core = dbConnect(drv, user="anonymous", host="ensembldb.ensembl.org", 
+                         dbname="homo_sapiens_core_75_37", password="")
+```
+
+# Combine Tables
+
+```{r combineTables, warning=FALSE, cache=TRUE}
+chr=4
+pos=23815662
+dbGetQuery(ensembl_core, 
+            paste0("SELECT s.name , g.seq_region_id, g.seq_region_start, 
+                    g.seq_region_end, x.display_label, et.rank, e.exon_id, 
+                    e.seq_region_start, e.seq_region_end 
+                    FROM gene g, xref x, seq_region s, transcript t, 
+                    exon_transcript et, exon e WHERE s.name =", chr, " AND ", pos ," 
+                    BETWEEN e.seq_region_start AND e.seq_region_end  AND 
+                    g.display_xref_id = x.xref_id AND s.seq_region_id = g.seq_region_id 
+                    AND g.gene_id = t.gene_id AND t.transcript_id = et.transcript_id 
+                    AND et.exon_id = e.exon_id 
+                    GROUP BY x.display_label, e.exon_id 
+                    ORDER BY s.name *1, e.seq_region_start"))
+```
+
+# SQLdf
+
+## Use SQL SELECTs on data frames
+
+```{r sqldf}
+library(sqldf)
+```
+
+read in only select data
+
+```{r, eval=FALSE}
+read.csv.sql(file = , sql = "SELECT * FROM file WHERE cond == cond1", )
+```
+
+subset
+
+```{r, eval=FALSE}
+df = data.frame(col1=, col2=, col3=)
+sqldf("SELECT col1 FROM df")
+```
+
+# dplyr vs sqldf
+
+Why not just use dplyr?
+
+sqldf seems to have most utility in subsetting large files on initial load
